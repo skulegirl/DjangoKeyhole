@@ -7,7 +7,6 @@
  *  Based on https://github.com/yufeiliu/simple_image_uploader
  *  Under MIT License
  */
-(function($) {
     var Zoomer;
     Zoomer = function() {
         function Zoomer() {}
@@ -634,4 +633,3 @@
             return methods.init.apply(this, arguments);
         }
     };
-})(django.jQuery);

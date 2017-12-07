@@ -52,7 +52,8 @@ class CroppedImageWidget(forms.widgets.FileInput):
         html = """
         <div class="image-editor" data-original-image="{image_url}"
              data-selector="id_{field_name}">
-            <input type="file" class="cropit-image-input">
+            <input type="file" class="cropit-image-input"
+                id="id_{field_name}_originalfile">
             <div class="cropit-image-preview"
                 style="width:{width}px;height:{height}px;"></div>
             <ul class="slider-wrapper">
@@ -62,6 +63,8 @@ class CroppedImageWidget(forms.widgets.FileInput):
             </ul>
             <input type="hidden" name="{field_name}" id="id_{field_name}"
                 class="hidden-image-data" />
+            <input type="hidden" name="{field_name}_filename"
+                id="id_{field_name}_filename">
         </div>
         """.format(
             image_url=self._get_url(value), height=self.height,
@@ -70,15 +73,20 @@ class CroppedImageWidget(forms.widgets.FileInput):
 
     def value_from_datadict(self, data, files, name):
         encoded_data = data.get(name, None)
+        filename = data.get(name + "_filename", None)
+        if filename:
+            filename_pattern = re.compile('(.*)[/\\\](.*)')
+            match = filename_pattern.match(filename)
+            if match:
+                filename = match[2]
         bytestream = None
-
         if encoded_data:
             content_type, image_bytes = self._get_image_data(encoded_data)
             if all([content_type, image_bytes]):
                 bytestream = BytesIO(base64.b64decode(image_bytes))
                 if bytestream:
                     image = InMemoryUploadedFile(
-                        bytestream, field_name='file', name='photo',
+                        bytestream, field_name='file', name=filename,
                         content_type=content_type,
                         size=sys.getsizeof(bytestream),
                         charset=None)
