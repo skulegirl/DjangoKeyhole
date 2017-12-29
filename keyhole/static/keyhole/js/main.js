@@ -11,7 +11,7 @@
             }
         });
 
-        $("form[class*='form'").submit(function( event ) {
+        $("form[class*='form']").submit(function( event ) {
             // Move cropped image data to hidden input
             var imageData = editor.cropit('export');
             $('#' + selector).val(imageData);
