@@ -7,7 +7,7 @@
     cursor: move;
 }
 
-.slider-wrapper li {
+.edit-wrapper li {
     margin: 7px;
     display: inline-block;
     vertical-align: middle;
@@ -16,7 +16,18 @@
 .icon {
     margin: 3px;
     display: block;
+}
+
+.icon-image {
     background-image: url("photo.png");
+}
+
+.icon-rotate-left {
+    background-image: url("rotate_left.png");
+}
+
+.icon-rotate-right {
+    background-image: url("rotate_right.png");
 }
 
 .icon-small {

@@ -5,10 +5,17 @@
             imageState: {
                 src: editor.data('original-image')
             },
+            $preview: editor.find('.cropit-image-preview'),
             onFileChange: function() {
                 if (on_filechange_callback != undefined)
                     on_filechange_callback();
             }
+        });
+        $('.rotate-cw-btn').click(function() {
+          editor.cropit('rotateCW');
+        });
+        $('.rotate-ccw-btn').click(function() {
+          editor.cropit('rotateCCW');
         });
 
         $("form[class*='form']").submit(function( event ) {
@@ -26,4 +33,3 @@
             init_editor(value);
         });
     });
-

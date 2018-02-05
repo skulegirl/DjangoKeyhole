@@ -56,10 +56,12 @@ class CroppedImageWidget(forms.widgets.FileInput):
                 id="id_{field_name}_originalfile">
             <div class="cropit-image-preview"
                 style="width:{width}px;height:{height}px;"></div>
-            <ul class="slider-wrapper">
-                <li><span class="icon icon-small"></span></li>
+            <ul class="edit-wrapper">
+                <li><span class="icon icon-small icon-rotate-left rotate-ccw-btn"></span></li>
+                <li><span class="icon icon-small icon-rotate-right rotate-cw-btn"></span></li>
+                <li><span class="icon icon-image icon-small"></span></li>
                 <li><input type="range" class="cropit-image-zoom-input"></li>
-                <li><span class="icon icon-large"></span></li>
+                <li><span class="icon icon-image icon-large"></span></li>
             </ul>
             <input type="hidden" name="{field_name}" id="id_{field_name}"
                 class="hidden-image-data" />
