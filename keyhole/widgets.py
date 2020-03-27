@@ -48,7 +48,7 @@ class CroppedImageWidget(forms.widgets.FileInput):
             pass
         return image_url or default
 
-    def render(self, name, value, attrs=None):
+    def render(self, name, value, attrs=None, renderer=None):
         html = """
         <div class="image-editor" data-original-image="{image_url}"
              data-selector="id_{field_name}">
